@@ -1,0 +1,38 @@
+# Retrieval test set for the 9 Aug-Dec-2026 course files in data/.
+# question <TAB> file name prefix <TAB> Excel row that answers it ("-" = must find nothing)
+# A question passes when that row is among the rows llm_rag gives the model.
+Who is the instructor for DS3010?	04_UG_DS	10
+Who teaches DS3010	04_UG_DS	10
+What is the slot and room for Discrete Mathematics?	03_UG_CSE	6
+How many credits is Introduction to Optimization?	04_UG_DS	8
+What are the prerequisites for Introduction to Machine Learning?	04_UG_DS	10
+Which courses does Sahely Bhadra teach?	04_UG_DS	9
+who teaches GPU programming	03_UG_CSE	12
+Where is the Physics lab?	01a_UG	38
+When is Engineering Drawing?	01a_UG	17
+What is cs 3050	03_UG_CSE	11
+Who teaches Cryptography?	03_UG_CSE	8
+What is the course code of Real Analysis?	08_PG_MA	7
+Who is the instructor of Biochemistry?	07_PG_CY	15
+Who can approve my registration?	01a_UG	52
+room for CS3070	03_UG_CSE	10
+slot of Theory of Computation	03_UG_CSE	11
+Who is the instructor of Explainable AI	04_UG_DS	10
+credits of Generative Artificial Intelligence	04_UG_DS	6
+Who teaches Signals and Systems	05_UG_EE	8
+instructor for Strength of Materials	02_UG_CE	7
+What is the room for Heat and Mass Transfer	06_UG_ME	11
+Who teaches Topology	08_PG_MA	15
+Who is the instructor for Linear Algebra	08_PG_MA	6
+prerequisites for Information Retrieval	04_UG_DS	11
+Is Multi-Agent Systems open as OE for PG	04_UG_DS	7
+Who teaches Communication Skills	01b_PG	6
+Which slot is Life Sciences	01a_UG	46
+Who teaches Differential Equations	01a_UG	6
+instructor of Project I in civil engineering	02_UG_CE	6
+What is DS2030	04_UG_DS	9
+who teaches ME1020	06_UG_ME	6
+Who teaches Inorganic Chemistry Lab	07_PG_CY	11
+What is the capital of France?	-	-
+What is the weather today?	-	-
+Who won the cricket world cup?	-	-

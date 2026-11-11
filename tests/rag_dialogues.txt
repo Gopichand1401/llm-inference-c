@@ -1,0 +1,239 @@
+# Conversations for `llm_rag --retrieve-only` (tests/check_rag_dialogues.py).
+#   @ docs <folder>   documents of the session (default: the real files in data/)
+#   > text            a line typed by the user
+#   = text            the reply to it must contain this
+#   ! text            the reply to it must not contain this
+# A blank line starts a new session.
+
+# --- direct answer + source, by code, short form, name, any letter case ---
+> Who is the instructor for DS3010?
+= Swapnil Hingmire
+= Source: 04_UG_DS_Aug-Dec-2026.xlsx, tab Core, row 10 (B. Tech. Data Science Core Courses)
+= Do you want the slot?
+! swapnilh@
+! Credits
+! score
+> who is the INSTRUCTOR for ml?
+= Swapnil Hingmire
+= row 10
+> Who is the instructor for machine Learning?
+= Swapnil Hingmire
+> wHo TeAcHeS ds 3010
+= Swapnil Hingmire
+> who teaches DS-3010
+= Swapnil Hingmire
+
+# --- the offer: yes, another column, yes + column, no, exam slot ---
+> who is the instructor for ML?
+= Swapnil Hingmire
+= Do you want the slot?
+> yes
+= D [Mon,Wed], E [Fri] + PA5
+= Do you want the room?
+! Source:
+> give the instructor mail id
+= swapnilh@iitpkd.ac.in
+! Swapnil Hingmire
+> YES give room
+= A01-212 + A01-109
+> no
+! Do you want
+! Sorry
+> what is its exam slot
+= Exam slot: D
+> credits and prerequisites
+= Credits: 3-0-3-5
+= Prerequisites: DS2010 Introduction to Optimization
+> details
+= Grading Scheme: Letter Grade
+= Source: 04_UG_DS
+
+# --- two instructors, then a new question instead of a reply ---
+> who is the instructor for C programming?
+= Sahasranand K R is the primary instructor and Abhinandan S P is the additional instructor.
+= tab Elective, row 9
+> who is the additional instructor
+= Abhinandan S P
+! Sahasranand
+> Who teaches Biochemistry?
+= Sushbhan Sadhukhan
+= 07_PG_CY
+
+# --- several columns, the same course in two files, name without a mail ---
+> slot and room for Discrete Mathematics
+= Slot: F+I [Fri]
+= Room: A01-002
+= 03_UG_CSE_Aug-Dec-2026.xlsx, tab Core, row 6
+> who teaches Cryptography
+= Srimanta Bhattacharya
+= 03_UG_CSE
+! 08_PG_MA
+> what is the course code of Real Analysis
+= MA5003
+> Is Multi-Agent Systems open as OE for PG
+= Yes
+= row 7
+> mail id of the DS3010 instructor
+= swapnilh@iitpkd.ac.in
+> what is DS2030
+= DS2030 - Data Structures and Algorithms for Data Science
+
+# --- typos and short forms; codes are never "corrected" ---
+> who teaches machne lerning
+= (Reading "machne" as "machine", "lerning" as "learning")
+= Swapnil Hingmire
+> who teaches GPU programing
+= Unnikrishnan Cheramangalath
+> instructer of dsa
+= Sahely Bhadra
+> slot of TOC
+= B+Q+E [Wed]
+> room for DAA
+= A01-212
+> who teaches ds3011
+= Sorry, I couldn't find any data about your question.
+! Swapnil
+
+# --- no exact answer: sorry, related rows on Y, a number picks one ---
+> Who teaches Quantum Computing?
+= Sorry, I couldn't find any data about your question.
+= There is some related information. Do you want to see it? (Y/N)
+! CY5018
+> y
+= CY5018 - Basic Quantum Chemistry
+= CS2011 - Foundations of Computing Systems
+! Engineering Drawing
+> 2
+= CS2011 - Foundations of Computing Systems
+= Source: 03_UG_CSE
+= Do you want the slot?
+> yes
+= D+R4
+
+# --- related rows declined; nothing related at all ---
+> who teaches quantum computing
+= Sorry, I couldn't find any data about your question.
+> N
+! CY5018
+! Sorry
+> What is the capital of France?
+= Sorry, I couldn't find any data about your question.
+! related
+> what is the weather today
+= Sorry, I couldn't find any data about your question.
+! related
+
+# --- lists and counts (checked against an independent count) ---
+> Which courses does Sahely Bhadra teach?
+= 1 found for sahely bhadra:
+= DS2030 - Data Structures and Algorithms for Data Science
+> how many courses does santhakumar teach
+= 3 found for santhakumar:
+= ME5639
+= ME5623
+= ME2060A
+> How many courses are in slot D?
+= 15 found for d:
+= DS3010 - Introduction to Machine Learning
+> Which courses are in room A01-212?
+= 10 found for
+= CS3070 - Design and Analysis of Algorithms
+> 2
+= Source:
+> list all labs
+= 5 found:
+= PH1130 - Physics Lab
+
+# --- equal matches give a numbered choice ---
+> who teaches lab
+= 2 rows match equally well. Which one do you mean?
+= 1. PH1130 - Physics Lab
+= 2. CY1140 - Chemistry Lab
+> 7
+= Please type a number from 1 to 2
+> 2
+= Abdul Rasheed
+= rows 41-43
+
+# --- a course split into batches: one answer, a small table ---
+> When is Engineering Drawing?
+= Row    Slot     Room/Batches
+= 17     A (Mon)  C06-105(B1-B5)
+= 26     PA2      A01-112(Drawing Hall) (B21-B24)
+= rows 17-26
+> who teaches it
+= dinesh@iitpkd.ac.in is the primary instructor
+
+# --- a follow-up with nothing to follow ---
+> what is the slot?
+= Please say which one you mean
+> yes
+= Please ask a question.
+
+# --- any spreadsheet, and CSV files ---
+@ docs build/rag_test_data
+> What are Asha Menon's marks in Physics?
+= 75
+= Source: marks.xlsx, tab Semester 1, row 2
+> and maths
+= 82
+> grade of 21ds003
+= S
+= row 4
+> who wrote Operating System Concepts
+= Sorry
+> author of Operating System Concepts
+= Silberschatz
+= Source: books.csv, row 6
+> shelf of the C programming language
+= R1-02
+= books.csv, row 3
+> author of BK-101
+= Meera Nair
+! meera@
+> yes
+= meera@lib.example
+= Do you want the shelf?
+> yes
+= R2-14
+> price of chalk
+= 45,50
+= Source: stock.CSV, row 2
+> Who teaches Physics Lab
+= Row
+= Ravi
+= Meera
+= edge.xlsx, tab Batches, rows 4-6
+
+# --- chatty wording (from a real session) ---
+> can u tell the instructor for the C programming
+= Sahasranand K R is the primary instructor and Abhinandan S P is the additional instructor.
+! Sorry
+> no i want the instructor for this course and his email id
+= Sahasranand K R (sahasranand@iitpkd.ac.in) is the primary instructor
+= Abhinandan S P (abhinandansp@iitpkd.ac.in) is the additional instructor
+> can u give the names of those instructors
+= Sahasranand K R is the primary instructor
+! Reading
+! Sorry
+> pls give only the mail ids
+= Primary Instructor Email ID: sahasranand@iitpkd.ac.in
+> hi can u pls tell me the slot of DS3010
+= D [Mon,Wed], E [Fri] + PA5
+> thanks, and who teaches it
+= Swapnil Hingmire
+> name and mail id of the instructor of GPU programming
+= Unnikrishnan Cheramangalath (unnikrishnan@iitpkd.ac.in)
+
+# --- a count / list question right after an answer is NOT a follow-up ---
+# (regression: "slot D" quoted the previous row's slot value, so the slot of
+#  DS3010 was printed instead of every course in slot D)
+> Who is the instructor for ML?
+= Swapnil Hingmire
+> yes
+= D [Mon,Wed]
+> How many courses are in slot D?
+= 15 found for d:
+! Do you want the room?
+> Which courses are in slot D?
+= 15 found for d:

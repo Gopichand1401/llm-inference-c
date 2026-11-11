@@ -1,0 +1,10 @@
+# End-to-end answers with the real TinyLlama model in --rag mode (tests/run_rag_checks.sh MODEL).
+# question <TAB> text the answer must contain (case-insensitive)
+Who is the instructor for DS3010?	Swapnil
+What is the slot for CS3050 Theory of Computation?	B+Q+E
+Who teaches GPU Programming?	Unnikrishnan
+What is the room for Design and Analysis of Algorithms?	A01-212
+How many credits is Introduction to Optimization?	3-0-0-3
+Who teaches Biochemistry?	Sushbhan
+Who is the instructor of Topology?	Lakshmi
+What is the capital of France?	could not find
